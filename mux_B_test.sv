@@ -1,25 +1,28 @@
-`timescale 1 ns/1 ps
+`timescale 1ns / 1ps
 module mux_B_test;
 
-logic [10:0] EXT_in, DATA_MEMORY_in;
-logic sel_B;
-logic [10:0] MB_out;
+    logic [10:0] ext_in, data_memory_in;
+    logic sel_B;
+    logic [10:0] mux_B_out;
 
-mux_B Mux_B(
-    .EXT_in(EXT_in), 
-    .DATA_MEMORY_in(DATA_MEMORY_in), 
-    .sel_B(sel_B), 
-    .MB_out(MB_out)
-);
+    mux_B Mux_B0(
+        .ext_in(ext_in), 
+        .data_memory_in(data_memory_in), 
+        .sel_B(sel_B), 
+        .mux_B_out(mux_B_out)
+    );
 
-initial
+    initial
     begin
-        EXT_in = 11'b00000000000; DATA_MEMORY_in = 11'b00001001001;
+        ext_in = 11'b00000000000; data_memory_in = 11'b00001001001;
         sel_B = 1'b1;
+        #1 data_memory_in = 11'b11101001001;
         #1 sel_B = 1'b0;
         #1 sel_B = 1'b1;
         #1 sel_B = 1'b0;
+        #1 ext_in = 11'b00001100100;
         #1 sel_B = 1'b0;
-        #1 sel_B = 1'b1;	
+        #1 sel_B = 1'b1;
+        #1 ext_in = 11'b00000000000;	
     end
 endmodule 
