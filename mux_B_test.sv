@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1 ns / 1 ps
 module mux_B_test;
 
     logic [10:0] ext_in, data_memory_in;

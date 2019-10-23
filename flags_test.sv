@@ -2,13 +2,20 @@
 
 module flags_test;
 
-reg [10:0] flags_in;
-reg flags_reset, flags_wr;
-wire clock;
-wire flag_Z, flag_N;
+logic [10:0] flags_in;
+logic flags_reset, flags_wr;
+logic clock;
+logic flag_Z, flag_N;
 
 clock_generator GCLOCK(clock);
-flags FLAGS(flags_in, clock, flags_wr, flags_reset, flag_Z, flag_N);
+flags FLAGS(
+	.flags_in(flags_in), 
+	.clock(clock), 
+	.flags_wr(flags_wr), 
+	.flags_reset(flags_reset), 
+	.flag_Z(flag_Z), 
+	.flag_N(flag_N)
+);
 
 initial
 begin

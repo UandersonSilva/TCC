@@ -6,7 +6,7 @@ module alu_test;
     logic  operation;
     logic [10:0] alu_out;
 
-    ula U(
+    alu U(
         .A_in(A_in), 
         .B_in(B_in), 
         .operation(operation), 

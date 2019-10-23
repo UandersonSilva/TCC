@@ -1,6 +1,6 @@
-`timescale 1ns / 1ps
+`timescale 1 ns / 1 ps
 
-module testeAcumulador;
+module acc_test;
 
     logic [10:0] acc_in;
     logic acc_wr, acc_reset;
@@ -9,7 +9,7 @@ module testeAcumulador;
 
     clock_generator GCLOCK(clock);
 
-    acumulador ACC(
+    acc ACC(
         .acc_in(acc_in), 
         .acc_wr(acc_wr), 
         .acc_reset(acc_reset), 
