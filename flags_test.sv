@@ -19,7 +19,8 @@ flags FLAGS(
 
 initial
 begin
-	flags_in = 11'b00000000000; flags_reset = 1'b0; flags_wr = 1'b0;
+	flags_in = 11'b00000000000; flags_reset = 1'b1; flags_wr = 1'b0;
+	#2 flags_reset = 1'b0;
 	#2 flags_wr = 1'b1;
 	#2 flags_in = 11'b10000100000;
 	#2 flags_wr = 1'b0;
