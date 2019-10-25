@@ -23,7 +23,7 @@ module acc_test;
             acc_wr=1'b0; 
             acc_reset=1'b1;
             #2	acc_reset=1'b0;
-                acc_wr=1'b1;
+            #2  acc_wr=1'b1;
             #2	acc_wr=1'b0;
             #2	acc_reset=1'b1;
             #2	acc_reset=1'b0;
