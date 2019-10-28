@@ -1,9 +1,11 @@
-`timescale 1 ns / 1 ps
-module mux_B_test;
+`timescale 1 ns / 10 ps
+module mux_B_test#(
+        parameter DATA_WIDTH = 11
+    );
 
-    logic [10:0] ext_in, data_memory_in;
+    logic [DATA_WIDTH - 1:0] ext_in, data_memory_in;
     logic sel_B;
-    logic [10:0] mux_B_out;
+    logic [DATA_WIDTH - 1:0] mux_B_out;
 
     mux_B Mux_B0(
         .ext_in(ext_in), 
