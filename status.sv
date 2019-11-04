@@ -8,20 +8,20 @@ module status#(
     );
 	 
 
-    always_ff @(posedge clock)
+    always_ff @(posedge clock or posedge status_reset)
     begin
-        if(status_reset==1'b0)
+        if(status_reset==1'b1)
+        begin
+            flag_Z <= 1'b0;
+            flag_N <= 1'b0;
+        end
+        else
         begin
             if(status_wr==1'b1)
             begin
                 flag_Z <= zero_indicator_in;			
                 flag_N <= signal_bit_in;
             end
-        end
-        else
-        begin
-            flag_Z <= 1'b0;
-            flag_N <= 1'b0;
         end
     end
 endmodule

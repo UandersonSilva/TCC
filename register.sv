@@ -7,15 +7,15 @@ module register#(
         output logic [DATA_WIDTH - 1:0] reg_out
     );
 
-    always_ff @(posedge clock)
+    always_ff @(posedge clock or posedge reg_reset)
     begin
-        if(reg_reset==1'b0)
+        if(reg_reset==1'b1)
+            reg_out <= 11'b00000000000;
+        else
         begin
             if (reg_wr == 1'b1)
                 reg_out <= reg_in;
         end
-        else
-            reg_out <= 11'b00000000000;
     end
 
 endmodule

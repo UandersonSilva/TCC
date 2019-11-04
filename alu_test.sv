@@ -1,16 +1,21 @@
-`timescale 1 ns / 1 ps
+`timescale 1 ns / 10 ps
 
-module alu_test;
+module alu_test#(
+        parameter DATA_WIDTH = 11
+    );
 
-    logic [10:0] A_in, B_in;
+    logic [DATA_WIDTH - 1:0] A_in, B_in;
     logic  operation;
-    logic [10:0] alu_out;
+    logic [DATA_WIDTH - 1:0] alu_out;
+    logic zero_indicator, signal_bit;
 
     alu U(
         .A_in(A_in), 
         .B_in(B_in), 
         .operation(operation), 
-        .alu_out(alu_out)
+        .alu_out(alu_out),
+        .zero_indicator_out(zero_indicator), 
+        .signal_bit_out(signal_bit)
     );
 
     initial
