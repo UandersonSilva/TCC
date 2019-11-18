@@ -3,7 +3,7 @@ module datapath#(
     )
     (
         input logic [DATA_WIDTH - 1:0] operand_in, data_memory_in,
-        input logic op_alu_in, sel_B_in, acc_wr_in, clock_in,
+        input logic alu_op_in, sel_B_in, acc_wr_in, clock_in,
         input logic status_wr_in, status_reset_in, acc_reset_in,
         input logic [1:0] sel_A_in,
         output logic [DATA_WIDTH - 1:0] data_out, ext_out,
@@ -27,7 +27,7 @@ module datapath#(
     alu alu0(
         .A_in(acc_out_data_out_and_alu_A_in),
         .B_in(mux_B_out_alu_B_in),
-        .operation(op_alu_in),
+        .operation(alu_op_in),
         .alu_out(alu_out_mux_A_in),
         .zero_indicator_out(zero_indicator),
         .signal_bit_out(signal_bit)
@@ -49,18 +49,18 @@ module datapath#(
     );
 
     mux_3x1 mux_A0(
-        .alu_in(alu_out_mux_A_in),
-        .ext_in(ext_out_mux_A_and_B_in),
-        .data_memory_in(data_memory_in),
+        .in_10(alu_out_mux_A_in),
+        .in_01(ext_out_mux_A_and_B_in),
+        .in_00(data_memory_in),
         .select_3x1(sel_A_in),
-        .mux_A_out(mux_A_out_acc_in)
+        .mux_out(mux_A_out_acc_in)
     );
 
     mux_2x1 mux_B0(
-        .ext_in(ext_out_mux_A_and_B_in),
-        .data_memory_in(data_memory_in),
+        .in_1(ext_out_mux_A_and_B_in),
+        .in_0(data_memory_in),
         .select_2x1(sel_B_in),
-        .mux_B_out(mux_B_out_alu_B_in)
+        .mux_out(mux_B_out_alu_B_in)
     );
 
     assign data_memory_address_out = operand_in;

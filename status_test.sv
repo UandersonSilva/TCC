@@ -20,9 +20,10 @@ module status_test;
 
 	initial
 	begin
-		zero_indicator = 1'b0; signal_bit = 1'b1; 
+		status_reset = 1'b1;
 		status_wr = 1'b0;
-		status_reset = 1'b0;
+		#2 zero_indicator = 1'b0; signal_bit = 1'b1;
+		   status_reset = 1'b0;
 		#2 status_wr = 1'b1;
 		#2 zero_indicator = 1'b1; signal_bit = 1'b0;
 		#2 status_wr = 1'b0;

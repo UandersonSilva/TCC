@@ -5,7 +5,7 @@ module datapath_test#(
     );
 
     logic [DATA_WIDTH - 1:0] operand, data_memory;
-    logic op_alu, sel_B, acc_wr, clock;
+    logic alu_op, sel_B, acc_wr, clock;
     logic status_wr, status_reset, acc_reset;
     logic [1:0] sel_A;
     logic [DATA_WIDTH - 1:0] data_out, ext_out;
@@ -17,7 +17,7 @@ module datapath_test#(
     datapath datapath0(
         .operand_in(operand), 
         .data_memory_in(data_memory),
-        .op_alu_in(op_alu),
+        .alu_op_in(alu_op),
         .sel_A_in(sel_A), 
         .sel_B_in(sel_B),
         .clock_in(clock), 
@@ -35,7 +35,7 @@ module datapath_test#(
     initial
     begin
         operand = 11'b00000000001; data_memory = 11'b00000000001;
-        op_alu = 1; sel_A = 0; sel_B = 0; acc_wr = 1'b0; acc_reset = 1; status_reset = 1;
+        alu_op = 1; sel_A = 0; sel_B = 0; acc_wr = 1'b0; acc_reset = 1; status_reset = 1;
         #2 acc_reset = 0; status_reset = 0; status_wr  = 1'b0;
         #2 acc_wr = 1'b1;
         #2 acc_wr = 1'b0;

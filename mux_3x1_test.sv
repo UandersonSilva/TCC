@@ -1,6 +1,6 @@
 `timescale 1 ns / 10 ps
 
-module mux_A_test#(
+module mux_3x1_test#(
         parameter DATA_WIDTH = 11
     );
 
@@ -8,7 +8,7 @@ module mux_A_test#(
     logic [1:0] sel_A;
     logic [DATA_WIDTH - 1:0] mux_A_out;
 
-    mux_3x1 Mux_0(
+    mux_3x1 mux0(
         .in_10(alu_in),
         .in_01(ext_in),
         .in_00(data_memory_in),

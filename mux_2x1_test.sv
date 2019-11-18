@@ -7,7 +7,7 @@ module mux_2x1_test#(
     logic sel_B;
     logic [DATA_WIDTH - 1:0] mux_B_out;
 
-    mux_2x1 mux_0(
+    mux_2x1 mux0(
         .in_1(ext_in),
         .in_0(data_memory_in),
         .select_2x1(sel_B),

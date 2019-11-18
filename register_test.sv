@@ -20,10 +20,10 @@ module register_test#(
     );
 
     initial
-    begin
-        reg_in = 11'b00000110010; 
+    begin 
         reg_wr=1'b0; 
         reg_reset=1'b1;
+        reg_in = 11'b00000110010;
         #2	reg_reset=1'b0;
             reg_wr=1'b1;
         #2	reg_wr=1'b0;
@@ -32,6 +32,8 @@ module register_test#(
         #2	reg_in = 11'b10110010010;
         #2	reg_wr=1'b1;
         #2	reg_wr=1'b0;
+        #2	reg_in = 11'b11000010011;
+        #2	reg_in = 11'b00010010000;
         #2	reg_reset=1'b1;
         #2	reg_reset=1'b0;
         #2 reg_in = 11'b11100000011;	
