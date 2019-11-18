@@ -1,16 +1,17 @@
 module decoder#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 11,
         parameter INSTRUCTION_WIDTH = 15
     )
     (
-        input logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code;
+      	input logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code,
+		input logic clock_in, status_Z_in, status_N_in, reset_in,
+		output logic branch_out, sel_B_out, alu_op_out, data_memory_wr_out,  
+		output logic acc_wr_out, pc_wr_out, status_wr_out, ir_wr_out,
+		output logic acc_reset_out, pc_reset_out, status_reset_out, ir_reset_out,
+		output logic [1:0] sel_A_out
 	);
 	
-	input logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code;
-	input logic clock, flag_Z_in, flag_Z_in, reset;
-	output logic branch, sel_B, acc_wr, pc_wr, op, data_memory_wr;
-	output logic status_wr, acc_reset, pc_reset, status_reset;
-	output logic [1:0] sel_A; 
+	 
 	
 	localparam 
 		_FETCH = 2'b00, 
@@ -43,18 +44,17 @@ module decoder#(
 		next_stage = _RESET;
 	end
 		
-	always_ff @(posedge clock or negedge reset)
+	always_ff @(posedge clock_in or negedge reset_in)
 	begin
-		if(reset==1'b0)
+		if(reset_in==1'b0)
 			current_stage = _RESET;
 		else
 			current_stage = next_stage;
 	end
 	
-	always_comb @(current_stage)
+	always @(current_stage)
 	begin
-		case(current_stage)
-						
+		case(current_stage)			
 			_RESET:
 			begin
 				next_stage = _FETCH;
@@ -77,274 +77,309 @@ module decoder#(
 		endcase
 	end
 	
-	always_comb @(current_stage)
+	always_comb
 	begin
 		case(current_stage)
 			_RESET:
 			begin
-				branch = 1'b0;
-				sel_A = 2'b00;
-				sel_B = 1'b0;
-				op = 1'b0;
-				pc_wr = 1'b0;
-				status_wr = 1'b0;
-				acc_wr = 1'b0;
-				data_memory_wr = 1'b0;
-				acc_reset = 1'b1;
-				pc_reset = 1'b1;
-				status_reset = 1'b1;
+				branch_out = 1'b0;
+				sel_A_out = 2'b00;
+				sel_B_out = 1'b0;
+				alu_op_out = 1'b0;
+				pc_wr_out = 1'b0;
+				status_wr_out = 1'b0;
+				acc_wr_out = 1'b0;
+				ir_wr_out = 1'b0;
+				data_memory_wr_out = 1'b0;
+				acc_reset_out = 1'b1;
+				pc_reset_out = 1'b1;
+				status_reset_out = 1'b1;
+				ir_reset_out = 1'b1;
 			end
 		
 			_FETCH:
 			begin
-				branch = 1'b0;
-				sel_A = 2'b00;
-				sel_B = 1'b0;				
-				op = 1'b0;
-				pc_wr = 1'b0;
-				status_wr = 1'b0;
-				acc_wr = 1'b0;
-				data_memory_wr = 1'b0;
-				acc_reset = 1'b0;
-				pc_reset = 1'b0;
-				status_reset = 1'b0;
+				branch_out = 1'b0;
+				sel_A_out = 2'b00;
+				sel_B_out = 1'b0;				
+				alu_op_out  = 1'b0;
+				pc_wr_out = 1'b0;
+				status_wr_out = 1'b0;
+				acc_wr_out = 1'b0;
+				ir_wr_out = 1'b1;
+				data_memory_wr_out = 1'b0;
+				acc_reset_out = 1'b0;
+				pc_reset_out = 1'b0;
+				status_reset_out = 1'b0;
+				ir_reset_out = 1'b0;
 			end
 			
 			_DEC:
 			begin
+				pc_wr_out = 1'b0;
+				status_wr_out = 1'b0;
+				acc_wr_out = 1'b0;
+				ir_wr_out = 1'b0;
+				data_memory_wr_out = 1'b0;
+				acc_reset_out = 1'b0;
+				pc_reset_out = 1'b0;
+				status_reset_out = 1'b0;
+				ir_reset_out = 1'b0;
 				case(op_code)
 					_HLT:
 					begin
-						branch = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;						
-						op = 1'b0;
+						branch_out = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;						
+						alu_op_out  = 1'b0;
 					end
 					
 					_STO:
 					begin
-						branch = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;						
-						op = 1'b0;
+						branch_out = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;						
+						alu_op_out  = 1'b0;
 					end
 					
 					_LD:
 					begin
-						branch = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;						
-						op = 1'b0;
+						branch_out = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;						
+						alu_op_out  = 1'b0;
 					end
 					
 					_LDI:
 					begin
-						branch = 1'b0;
-						sel_A = 2'b01;
-						sel_B = 1'b0;						
-						op = 1'b0;
+						branch_out = 1'b0;
+						sel_A_out = 2'b01;
+						sel_B_out = 1'b0;						
+						alu_op_out  = 1'b0;
 					end
 					
 					_ADD:
 					begin
-						branch = 1'b0;
-						op = 1'b0;
-						sel_A = 2'b10;
-						sel_B = 1'b0;						
+						branch_out = 1'b0;
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b10;
+						sel_B_out = 1'b0;						
 					end
 					
 					_ADDI:
 					begin
-						branch = 1'b0;
-						op = 1'b0;
-						sel_A = 2'b10;
-						sel_B = 1'b1;						
+						branch_out = 1'b0;
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b10;
+						sel_B_out = 1'b1;						
 					end
 					
 					_SUB:
 					begin
-						branch = 1'b0;
-						op = 1'b1;
-						sel_A = 2'b10;
-						sel_B = 1'b0;						
+						branch_out = 1'b0;
+						alu_op_out  = 1'b1;
+						sel_A_out = 2'b10;
+						sel_B_out = 1'b0;						
 					end
 					
 					_SUBI:
 					begin
-						branch = 1'b0;
-						op = 1'b1;
-						sel_A = 2'b10;
-						sel_B = 1'b1;						
+						branch_out = 1'b0;
+						alu_op_out  = 1'b1;
+						sel_A_out = 2'b10;
+						sel_B_out = 1'b1;						
 					end
 					
 					_BEQ:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in==1)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_Z_in==1)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 					
 					_BNE:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in==0)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_Z_in==0)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 					
 					_BGT:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in==0 && flag_Z_in == 0)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_Z_in==0 && status_N_in==0)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 
 					_BGE:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in == 0)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_N_in==0)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 					
 					_BLT:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in == 1)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_N_in==1)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 					
 					_BLE:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						if(flag_Z_in == 1 || flag_Z_in == 1)
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						if(status_Z_in==1 || status_N_in==1)
 						begin
-							branch = 1'b1;							
+							branch_out = 1'b1;							
 						end
 						else
 						begin
-							branch = 1'b0;							
+							branch_out = 1'b0;							
 						end
 					end
 					
 					_JMP:
 					begin
-						op = 1'b0;
-						sel_A = 2'b00;
-						sel_B = 1'b0;
-						branch = 1'b1;						
+						alu_op_out  = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;
+						branch_out = 1'b1;						
+					end
+
+					default:
+					begin
+						branch_out = 1'b0;
+						sel_A_out = 2'b00;
+						sel_B_out = 1'b0;						
+						alu_op_out  = 1'b0;
 					end
 				endcase
 			end
 			
 			_EXEC:
 			begin
+				branch_out = branch_out;
+				sel_A_out = sel_A_out;
+				sel_B_out = sel_B_out;				
+				alu_op_out  = alu_op_out;
+				ir_wr_out = ir_wr_out;
+				acc_reset_out = acc_reset_out;
+				pc_reset_out = pc_reset_out;
+				status_reset_out = status_reset_out;
+				ir_reset_out = ir_reset_out;
 				case(op_code)
 					_HLT:
 					begin
-						pc_wr = 1'b0;
-						acc_wr = 1'b0;
-						data_memory_wr = 1'b0;
+						pc_wr_out = 1'b0;
+						status_wr_out = 1'b0;
+						acc_wr_out = 1'b0;
+						data_memory_wr_out = 1'b0;
 					end
 					
 					_STO:
 					begin
-						pc_wr = 1'b1;
-						acc_wr = 1'b0;
-						data_memory_wr = 1'b1;
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b0;
+						acc_wr_out = 1'b0;
+						data_memory_wr_out = 1'b1;
 					end
 					
 					_LD:
 					begin
-						pc_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b0;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;
 					end
 					
 					_LDI:
 					begin
-						pc_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b0;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;
 					end
 					
 					_ADD:
 					begin
-						pc_wr = 1'b1;
-						status_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;						
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b1;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;						
 					end
 					
 					_ADDI:
 					begin
-						pc_wr = 1'b1;
-						status_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;						
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b1;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;						
 					end	
 	
 					_SUB:
 					begin
-						pc_wr = 1'b1;
-						status_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;						
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b1;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;						
 					end
 					
 					_SUBI:
 					begin
-						pc_wr = 1'b1;
-						status_wr = 1'b1;
-						acc_wr = 1'b1;
-						data_memory_wr = 1'b0;						
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b1;
+						acc_wr_out = 1'b1;
+						data_memory_wr_out = 1'b0;						
 					end
 
 					default:
 					begin
-						pc_wr = 1'b1;
-						acc_wr = 1'b0;
-						data_memory_wr = 1'b0;
+						pc_wr_out = 1'b1;
+						status_wr_out = 1'b0;
+						acc_wr_out = 1'b0;
+						data_memory_wr_out = 1'b0;
 					end
 				endcase
 			end
