@@ -38,32 +38,32 @@ initial
 		op_code = 5'b00000;//HLT 
 		status_Z_in=1'b0; status_N_in=1'b0; reset_in = 1;
 	
-		#8 op_code=5'b00001;//STO
-		#6 op_code=5'b00010;//LD
-		#6 op_code=5'b00011;//LDI
-		#6 op_code=5'b00100;//ADD
-		#6 op_code=5'b00101;//ADDI
-		#6 op_code=5'b00110;//SUB
-		#6 op_code=5'b00111;//SUBI
-		#6 op_code=5'b01000;//BEQ
+		#6 op_code=5'b00001;//STO
+		#4 op_code=5'b00010;//LD
+		#4 op_code=5'b00011;//LDI
+		#4 op_code=5'b00100;//ADD
+		#4 op_code=5'b00101;//ADDI
+		#4 op_code=5'b00110;//SUB
+		#4 op_code=5'b00111;//SUBI
+		#4 op_code=5'b01000;//BEQ
 			status_Z_in=1'b1;
-		#6 status_Z_in=1'b0;
-		#6 op_code=5'b01001;//BNE
+		#4 status_Z_in=1'b0;
+		#4 op_code=5'b01001;//BNE
 			status_Z_in=1'b1;
-		#6 status_Z_in=1'b0; 
-		#6 op_code=5'b01010;//BGT
-		#6 status_Z_in=1'b1;
-		#6 status_N_in=1'b1;
-		#6 status_Z_in=1'b0;
-		#6 status_N_in=1'b0;
-		#6 op_code=5'b01011;//BGE
-		#6 status_N_in=1'b1;
-		#6 op_code=5'b01100;//BLT
-		#6 status_N_in=1'b0;
-		#6 op_code=5'b01101;//BLE
-		#6 status_Z_in=1'b1;
-		#6 status_N_in=1'b1;
-		#6 op_code=5'b01110;//JMP
-		#6	reset_in = 1'b0;	
+		#4 status_Z_in=1'b0; 
+		#4 op_code=5'b01010;//BGT
+		#4 status_Z_in=1'b1;
+		#4 status_N_in=1'b1;
+		#4 status_Z_in=1'b0;
+		#4 status_N_in=1'b0;
+		#4 op_code=5'b01011;//BGE
+		#4 status_N_in=1'b1;
+		#4 op_code=5'b01100;//BLT
+		#4 status_N_in=1'b0;
+		#4 op_code=5'b01101;//BLE
+		#4 status_Z_in=1'b1;
+		#4 status_N_in=1'b1;
+		#4 op_code=5'b01110;//JMP
+		#4	reset_in = 1'b0;	
 	end	
 endmodule 
