@@ -11,7 +11,7 @@ module register_test#(
 
     clock_generator GCLOCK(clock);
 
-    register acc0(
+    register register0(
         .reg_in(reg_in), 
         .reg_wr(reg_wr), 
         .reg_reset(reg_reset), 

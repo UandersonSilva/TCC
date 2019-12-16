@@ -2,6 +2,7 @@ module datapath#(
         parameter DATA_WIDTH = 11
     )
     (
+        
         input logic [DATA_WIDTH - 1:0] operand_in, data_memory_in,
         input logic alu_op_in, sel_B_in, acc_wr_in, clock_in,
         input logic status_wr_in, status_reset_in, acc_reset_in,

@@ -1,6 +1,6 @@
 module decoder#(
         parameter DATA_WIDTH = 11,
-        parameter INSTRUCTION_WIDTH = 15
+        parameter INSTRUCTION_WIDTH = 16
     )
     (
       	input logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code,

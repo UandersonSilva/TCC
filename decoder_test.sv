@@ -1,7 +1,7 @@
 `timescale 1 ns/10 ps
 module decoder_test#(
         parameter DATA_WIDTH = 11,
-        parameter INSTRUCTION_WIDTH = 15
+        parameter INSTRUCTION_WIDTH = 16
     );
 
 	    logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code;
