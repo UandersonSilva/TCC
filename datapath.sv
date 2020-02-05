@@ -1,14 +1,14 @@
 module datapath#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16,
+        parameter OPERAND_WIDTH = 11
     )
     (
         
-        input logic [DATA_WIDTH - 1:0] operand_in, data_memory_in,
+        input logic [OPERAND_WIDTH - 1:0] operand_in, data_memory_address_out,
         input logic alu_op_in, sel_B_in, acc_wr_in, clock_in,
         input logic status_wr_in, status_reset_in, acc_reset_in,
         input logic [1:0] sel_A_in,
-        output logic [DATA_WIDTH - 1:0] data_out, ext_out,
-        output logic [DATA_WIDTH - 1:0] data_memory_address_out,
+        output logic [DATA_WIDTH - 1:0] data_out, ext_out, data_memory_in,
         output logic flag_Z_out, flag_N_out
     );
 

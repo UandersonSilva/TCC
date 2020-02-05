@@ -1,6 +1,4 @@
-module status#(
-        parameter DATA_WIDTH = 11
-    )
+module status
     (
         input logic zero_indicator_in, signal_bit_in,
         input logic status_reset, clock, status_wr,

@@ -1,7 +1,7 @@
 `timescale 1 ns / 10 ps
 
 module register_test#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     );
 
     logic [DATA_WIDTH - 1:0] reg_in;
@@ -23,19 +23,19 @@ module register_test#(
     begin 
         reg_wr=1'b0; 
         reg_reset=1'b1;
-        reg_in = 11'b00000110010;
+        reg_in = 16'b0000000000110010;
         #2	reg_reset=1'b0;
             reg_wr=1'b1;
         #2	reg_wr=1'b0;
         #2	reg_reset=1'b1;
         #2	reg_reset=1'b0;
-        #2	reg_in = 11'b10110010010;
+        #2	reg_in = 16'b1111110110010010;
         #2	reg_wr=1'b1;
         #2	reg_wr=1'b0;
-        #2	reg_in = 11'b11000010011;
-        #2	reg_in = 11'b00010010000;
+        #2	reg_in = 16'b1111111000010011;
+        #2	reg_in = 16'b0000000010010000;
         #2	reg_reset=1'b1;
         #2	reg_reset=1'b0;
-        #2 reg_in = 11'b11100000011;	
+        #2 reg_in = 16'b1111111100000011;	
     end
 endmodule 

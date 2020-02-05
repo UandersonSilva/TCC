@@ -1,9 +1,9 @@
 `timescale 1 ns / 10 ps
 module pc_adder_test#(
-        parameter DATA_WIDTH = 11
+        parameter ADDRESS_WIDTH = 11
     );
     
-    logic [DATA_WIDTH - 1:0] pc_adder_in, pc_adder_out;
+    logic [ADDRESS_WIDTH - 1:0] pc_adder_in, pc_adder_out;
 
     pc_adder pc_adder0(
         .pc_adder_in(pc_adder_in),

@@ -1,10 +1,12 @@
 `timescale 1 ns / 10 ps
 
 module ext_test#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16,
+		parameter OPERAND_WIDTH = 11
     );
 
-logic [DATA_WIDTH - 1:0] data, ext_out;
+logic [DATA_WIDTH - 1:0] ext_out;
+logic [OPERAND_WIDTH - 1:0] data;
 
 ext ext0(
 	.data_in(data), 

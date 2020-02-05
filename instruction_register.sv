@@ -10,7 +10,7 @@ module instruction_register#(
     always_ff @(posedge clock or posedge ir_reset)
     begin
         if(ir_reset==1'b1)
-            ir_out <= 16'b00000000000;
+            ir_out <= 16'b0000000000000000;
         else
         begin
             if (ir_wr == 1'b1)

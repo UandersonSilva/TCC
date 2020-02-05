@@ -1,9 +1,9 @@
 module decoder#(
-        parameter DATA_WIDTH = 11,
+        parameter OPERAND_WIDTH = 11,
         parameter INSTRUCTION_WIDTH = 16
     )
     (
-      	input logic [INSTRUCTION_WIDTH - DATA_WIDTH:0] op_code,
+      	input logic [INSTRUCTION_WIDTH - OPERAND_WIDTH:0] op_code,
 		input logic clock_in, status_Z_in, status_N_in, reset_in,
 		output logic branch_out, sel_B_out, alu_op_out, data_memory_wr_out,  
 		output logic acc_wr_out, pc_wr_out, status_wr_out, ir_wr_out,

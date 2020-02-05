@@ -1,5 +1,5 @@
 module mux_3x1#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     )
     (
         input logic [DATA_WIDTH - 1:0] in_10, in_01, in_00,

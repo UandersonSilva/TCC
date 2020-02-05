@@ -1,7 +1,7 @@
 `timescale 1 ns / 10 ps
 
 module mux_3x1_test#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     );
 
     logic [DATA_WIDTH - 1:0] alu_in, ext_in, data_memory_in;
@@ -18,18 +18,18 @@ module mux_3x1_test#(
 
     initial
     begin
-        ext_in = 11'b00001110001;
-        data_memory_in = 11'b00000000000;
-        alu_in = 11'b11110000010;
+        ext_in = 15'b0000000001110001;
+        data_memory_in = 15'b0000000000000000;
+        alu_in = 16'b1111111110000010;
         sel_A = 2'b00;
         #1 sel_A = 2'b01;
         #1 sel_A = 2'b10;
-        #1 alu_in = 11'b01010101010;
-        #1 ext_in = 11'b00000000001;
+        #1 alu_in = 16'b0000001010101010;
+        #1 ext_in = 16'b0000000000000001;
         #1 sel_A = 2'b00;
         #1 sel_A = 2'b11;
         #1 sel_A = 2'b00;
-        #1 data_memory_in = 11'b10001100100;
-        #1 alu_in = 11'b00100000010;
+        #1 data_memory_in = 16'b1111110001100100;
+        #1 alu_in = 16'b0000000100000010;
     end
 endmodule

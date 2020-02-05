@@ -1,7 +1,7 @@
 `timescale 1 ns / 10 ps
 
 module alu_test#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     );
 
     logic [DATA_WIDTH - 1:0] A_in, B_in;

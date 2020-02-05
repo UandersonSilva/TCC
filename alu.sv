@@ -1,5 +1,5 @@
 module alu#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     )
     (
         input logic [DATA_WIDTH - 1:0] A_in, B_in,

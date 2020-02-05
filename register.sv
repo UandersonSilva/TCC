@@ -1,5 +1,5 @@
 module register#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     )
     (
         input logic [DATA_WIDTH - 1:0] reg_in, 
@@ -10,7 +10,7 @@ module register#(
     always_ff @(posedge clock or posedge reg_reset)
     begin
         if(reg_reset==1'b1)
-            reg_out <= 11'b00000000000;
+            reg_out <= 16'b0000000000000000;
         else
         begin
             if (reg_wr == 1'b1)

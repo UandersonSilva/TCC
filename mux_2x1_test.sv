@@ -1,6 +1,6 @@
 `timescale 1 ns / 10 ps
 module mux_2x1_test#(
-        parameter DATA_WIDTH = 11
+        parameter DATA_WIDTH = 16
     );
 
     logic [DATA_WIDTH - 1:0] ext_in, data_memory_in;
@@ -16,15 +16,15 @@ module mux_2x1_test#(
 
     initial
     begin
-        ext_in = 11'b00000000000; data_memory_in = 11'b00001001001;
+        ext_in = 16'b0000000000000000; data_memory_in = 16'b0000000001001001;
         sel_B = 1'b1;
-        #1 data_memory_in = 11'b11101001001;
+        #1 data_memory_in = 11'b1111111101001001;
         #1 sel_B = 1'b0;
         #1 sel_B = 1'b1;
         #1 sel_B = 1'b0;
-        #1 ext_in = 11'b00001100100;
+        #1 ext_in = 16'b0000000001100100;
         #1 sel_B = 1'b0;
         #1 sel_B = 1'b1;
-        #1 ext_in = 11'b00000000000;
+        #1 ext_in = 16'b0000000000000000;
     end
 endmodule
