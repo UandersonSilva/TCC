@@ -2,7 +2,7 @@ module status
     (
         input logic zero_indicator_in, signal_bit_in,
         input logic status_reset, clock, status_wr,
-        output logic flag_Z, flag_N
+        output logic status_Z, status_N
     );
 	 
 
@@ -10,15 +10,15 @@ module status
     begin
         if(status_reset==1'b1)
         begin
-            flag_Z <= 1'b0;
-            flag_N <= 1'b0;
+            status_Z <= 1'b0;
+            status_N <= 1'b0;
         end
         else
         begin
             if(status_wr==1'b1)
             begin
-                flag_Z <= zero_indicator_in;			
-                flag_N <= signal_bit_in;
+                status_Z <= zero_indicator_in;			
+                status_N <= signal_bit_in;
             end
         end
     end

@@ -5,7 +5,7 @@ module status_test;
 	logic  zero_indicator, signal_bit;
 	logic status_reset, status_wr;
 	logic clock;
-	logic flag_Z, flag_N;
+	logic status_Z, status_N;
 
 	clock_generator GCLOCK(clock);
 	status status0(
@@ -14,8 +14,8 @@ module status_test;
 		.clock(clock), 
 		.status_wr(status_wr), 
 		.status_reset(status_reset), 
-		.flag_Z(flag_Z), 
-		.flag_N(flag_N)
+		.status_Z(status_Z), 
+		.status_N(status_N)
 	);
 
 	initial

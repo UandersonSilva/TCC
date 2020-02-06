@@ -11,7 +11,7 @@ module datapath_test#(
     logic status_wr, status_reset, acc_reset;
     logic [1:0] sel_A;
     logic [DATA_WIDTH - 1:0] data_out, ext_out;
-    logic flag_Z_out, flag_N_out;
+    logic status_Z_out, status_N_out;
 
     clock_generator GCLOCK(clock);
 
@@ -29,13 +29,13 @@ module datapath_test#(
         .data_out(data_out), 
         .ext_out(ext_out),
         .data_memory_address_out(data_memory_address_out),
-        .flag_Z_out(flag_Z_out), 
-        .flag_N_out(flag_N_out)
+        .status_Z_out(status_Z_out), 
+        .status_N_out(status_N_out)
     );
 
     initial
     begin
-        operand = 11'b00000000001; data_memory = 16'b0000000000000001;
+        operand = 11'b00000000001; data_memory = 16'b00000_00000000001;
         alu_op = 1; sel_A = 0; sel_B = 0; acc_wr = 1'b0; acc_reset = 1; status_reset = 1;
         #2 acc_reset = 0; status_reset = 0; status_wr  = 1'b0;
         #2 acc_wr = 1'b1;

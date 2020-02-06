@@ -64,6 +64,7 @@ initial
 		#4 status_Z_in=1'b1;
 		#4 status_N_in=1'b1;
 		#4 op_code=5'b01110;//JMP
-		#4	reset_in = 1'b0;	
+		#4	reset_in = 1'b0;
+		#4 op_code = 5'b00000;//HLT 	
 	end	
 endmodule 

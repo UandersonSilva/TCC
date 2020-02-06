@@ -1,10 +1,10 @@
 module mux_pc#(
-        parameter OPERAND_WIDTH = 11
+        parameter ADDRESS_WIDTH = 11
     )
     (
-        input logic [OPERAND_WIDTH - 1:0] in_0, in_1,
+        input logic [ADDRESS_WIDTH - 1:0] in_0, in_1,
         input logic select_mux_pc,
-        output logic [OPERAND_WIDTH - 1:0] mux_pc_out
+        output logic [ADDRESS_WIDTH - 1:0] mux_pc_out
     );
 
     always_comb

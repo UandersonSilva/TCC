@@ -4,12 +4,14 @@ module datapath#(
     )
     (
         
-        input logic [OPERAND_WIDTH - 1:0] operand_in, data_memory_address_out,
+        input logic [OPERAND_WIDTH - 1:0] operand_in,
+        input logic [DATA_WIDTH - 1:0] data_memory_in,
         input logic alu_op_in, sel_B_in, acc_wr_in, clock_in,
         input logic status_wr_in, status_reset_in, acc_reset_in,
         input logic [1:0] sel_A_in,
-        output logic [DATA_WIDTH - 1:0] data_out, ext_out, data_memory_in,
-        output logic flag_Z_out, flag_N_out
+        output logic [OPERAND_WIDTH - 1:0] data_memory_address_out,
+        output logic [DATA_WIDTH - 1:0] data_out, ext_out, 
+        output logic status_Z_out, status_N_out
     );
 
     logic [DATA_WIDTH - 1:0] ext_out_mux_A_and_B_in, alu_out_mux_A_in;
@@ -45,8 +47,8 @@ module datapath#(
         .clock(clock_in),
         .status_wr(status_wr_in),
         .status_reset(status_reset_in),
-        .flag_Z(flag_Z_out),
-        .flag_N(flag_N_out)
+        .status_Z(status_Z_out),
+        .status_N(status_N_out)
     );
 
     mux_3x1 mux_A0(

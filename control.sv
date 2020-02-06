@@ -5,7 +5,7 @@ module control#(
 (
     input logic [INSTRUCTION_WIDTH - 1:0] instruction_in, ext_in,
     input logic clock_in, status_Z_in, status_N_in, reset_in,
-    output logic [OPERAND_WIDTH - 1:0] address_out, operand_out,
+    output logic [OPERAND_WIDTH - 1:0] instruction_address_out, operand_out,
     output logic sel_B_out, alu_op_out, data_memory_wr_out,  
     output logic acc_wr_out,  status_wr_out, 
     output logic acc_reset_out,  status_reset_out, 
@@ -43,7 +43,7 @@ decoder decoder0(
         .pc_in(pc_in), 
         .pc_wr(pc_wr), 
         .pc_reset(pc_reset), 
-        .clock(clock), 
+        .clock(clock_in), 
         .pc_out(pc_out)
     );
 
@@ -51,7 +51,7 @@ decoder decoder0(
         .ir_in(instruction_in), 
         .ir_wr(ir_wr), 
         .ir_reset(ir_reset), 
-        .clock(clock), 
+        .clock(clock_in), 
         .ir_out(ir_out)
     );
 
@@ -68,7 +68,7 @@ decoder decoder0(
     );
 
     assign op_code = ir_out[INSTRUCTION_WIDTH - 1: OPERAND_WIDTH];
-    assign operand_out = ir_out[OPERAND_WIDTH-1:0];
-    assign address_out = pc_out;
+    assign operand_out = ir_out[OPERAND_WIDTH - 1:0];
+    assign instruction_address_out = pc_out;
 
 endmodule

@@ -11,7 +11,7 @@ module instruction_register_test#(
 
     clock_generator GCLOCK(clock);
 
-    register register0(
+    instruction_register register0(
         .ir_in(ir_in), 
         .ir_wr(ir_wr), 
         .ir_reset(ir_reset), 

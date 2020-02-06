@@ -22,7 +22,7 @@ module control_test#(
         .status_Z_in(status_Z), 
         .status_N_in(status_N), 
         .reset_in(reset),
-        .address_out(address), 
+        .instruction_address_out(address), 
         .operand_out(operand),
         .sel_B_out(sel_B), 
         .alu_op_out(alu_op), 
@@ -36,11 +36,10 @@ module control_test#(
 
 	initial
 	begin
-		instruction = 16'b00000000000000000;//HLT
 		status_Z=1'b0; status_N=1'b0; reset = 1;
 		ext = 16'b0000001010101100;
 	
-		#8 instruction = 16'b0000100000000000;//STO
+		#2 instruction = 16'b0000100000000000;//STO
 		#4 instruction = 16'b0001000000000000;//LD
 		#4 instruction = 16'b0001100000000001;//LDI
 		#4 instruction = 16'b0010000000000010;//ADD
