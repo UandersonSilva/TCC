@@ -39,20 +39,20 @@ decoder decoder0(
     .ir_reset_out(ir_reset)
 	);
 
-    program_counter pc0(
-        .pc_in(pc_in), 
-        .pc_wr(pc_wr), 
-        .pc_reset(pc_reset), 
+    register #(.WIDTH(OPERAND_WIDTH)) pc0(
+        .reg_in(pc_in), 
+        .reg_wr(pc_wr), 
+        .reg_reset(pc_reset), 
         .clock(clock_in), 
-        .pc_out(pc_out)
+        .reg_out(pc_out)
     );
 
-    instruction_register ir0(
-        .ir_in(instruction_in), 
-        .ir_wr(ir_wr), 
-        .ir_reset(ir_reset), 
+    register ir0(
+        .reg_in(instruction_in), 
+        .reg_wr(ir_wr), 
+        .reg_reset(ir_reset), 
         .clock(clock_in), 
-        .ir_out(ir_out)
+        .reg_out(ir_out)
     );
 
     mux_pc mux_pc0(

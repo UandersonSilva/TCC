@@ -4,29 +4,34 @@ module alu_test#(
         parameter DATA_WIDTH = 16
     );
 
-    logic [DATA_WIDTH - 1:0] A_in, B_in;
-    logic  operation;
+    logic [DATA_WIDTH - 1:0] alu_A_in, alu_B_in;
+    logic  alu_op_in;
     logic [DATA_WIDTH - 1:0] alu_out;
-    logic zero_indicator, signal_bit;
+    logic alu_Z_out, alu_N_out;
 
     alu U(
-        .A_in(A_in), 
-        .B_in(B_in), 
-        .operation(operation), 
+        .alu_A_in(alu_A_in), 
+        .alu_B_in(alu_B_in), 
+        .alu_op_in(alu_op_in), 
         .alu_out(alu_out),
-        .zero_indicator_out(zero_indicator), 
-        .signal_bit_out(signal_bit)
+        .alu_Z_out(alu_Z_out), 
+        .alu_N_out(alu_N_out)
     );
 
     initial
     begin
-        A_in = 11'b01111111111; 
-        B_in = 11'b00000000001;
-        operation = 1'b0;
-        #2 operation = 1'b1;
-        #2 B_in = 11'b00000000010;
-        #2 operation = 1'b0;
-        #2 A_in = 11'b00000000011;
-        #2 operation = 1'b1;	
+        alu_A_in = 11'b01111111111; 
+        alu_B_in = 11'b00000000001;
+        alu_op_in = 1'b0;
+        #2 alu_op_in = 1'b1;
+        #2 alu_B_in = 11'b00000000010;
+        #2 alu_op_in = 1'b0;
+        #2 alu_A_in = 11'b00000000011;
+        #2 alu_op_in = 1'b1;
+        #2 alu_B_in = 11'b00000000011;
+        #2 alu_op_in = 1'b0;
+        #2 alu_B_in = 11'b00000000100;
+        #2 alu_op_in = 1'b1;
+        #2 alu_op_in = 1'b0;
     end
 endmodule

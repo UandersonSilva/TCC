@@ -28,27 +28,25 @@ module datapath#(
     );
 
     alu alu0(
-        .A_in(acc_out_data_out_and_alu_A_in),
-        .B_in(mux_B_out_alu_B_in),
-        .operation(alu_op_in),
+        .alu_A_in(acc_out_data_out_and_alu_A_in),
+        .alu_B_in(mux_B_out_alu_B_in),
+        .alu_op_in(alu_op_in),
         .alu_out(alu_out_mux_A_in),
-        .zero_indicator_out(zero_indicator),
-        .signal_bit_out(signal_bit)
+        .alu_Z_out(zero_indicator),
+        .alu_N_out(signal_bit)
     );
 
     ext ext0(
-        .data_in(operand_in),
+        .ext_in(operand_in),
         .ext_out(ext_out_mux_A_and_B_in)
 	);
 
-    status status0(
-        .zero_indicator_in(zero_indicator),
-	    .signal_bit_in(signal_bit),
-        .clock(clock_in),
-        .status_wr(status_wr_in),
-        .status_reset(status_reset_in),
-        .status_Z(status_Z_out),
-        .status_N(status_N_out)
+    register #(.WIDTH(2)) status0(
+        .reg_in({zero_indicator, signal_bit}), 
+        .reg_wr(status_wr), 
+        .reg_reset(status_reset), 
+        .clock(clock), 
+        .reg_out({status_Z_out, status_N_out})
     );
 
     mux_3x1 mux_A0(
@@ -62,7 +60,7 @@ module datapath#(
     mux_2x1 mux_B0(
         .in_1(ext_out_mux_A_and_B_in),
         .in_0(data_memory_in),
-        .select_2x1(sel_B_in),
+        .sel_2x1_in(sel_B_in),
         .mux_out(mux_B_out_alu_B_in)
     );
 

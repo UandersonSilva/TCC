@@ -1,15 +1,15 @@
 module mux_2x1#(
-        parameter DATA_WIDTH = 16
+        parameter WIDTH = 16
     )
     (
-        input logic [DATA_WIDTH - 1:0] in_0, in_1,
-        input logic select_2x1,
-        output logic [DATA_WIDTH - 1:0] mux_out
+        input logic [WIDTH - 1:0] in_1, in_0,
+        input logic sel_2x1_in,
+        output logic [WIDTH - 1:0] mux_out
     );
 
     always_comb
     begin
-        if(select_2x1)
+        if(sel_2x1_in)
             mux_out <= in_1;
         else
             mux_out <= in_0;
