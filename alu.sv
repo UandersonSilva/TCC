@@ -8,16 +8,14 @@ module alu#(
         output logic alu_Z_out, alu_N_out
     );
 
-    localparam _soma = 1'b0, _subt = 1'b1;
+    localparam _add = 1'b0, _sub = 1'b1;
 
     always_comb
     begin
-        case(alu_op_in)
-            _soma: 
-                alu_out = alu_A_in + alu_B_in;
-            _subt:
-                alu_out = alu_A_in - alu_B_in;
-        endcase
+        if(alu_op_in)
+            alu_out = alu_A_in - alu_B_in;
+        else
+            alu_out = alu_A_in + alu_B_in;
         
         if(alu_out=={DATA_WIDTH{1'b0}})
             alu_Z_out <= 1'b1;

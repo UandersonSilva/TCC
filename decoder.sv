@@ -1,9 +1,10 @@
 module decoder#(
         parameter OPERAND_WIDTH = 11,
-        parameter INSTRUCTION_WIDTH = 16
+        parameter INSTRUCTION_WIDTH = 16,
+		parameter OPCODE_WIDTH = INSTRUCTION_WIDTH - OPERAND_WIDTH
     )
     (
-      	input logic [INSTRUCTION_WIDTH - OPERAND_WIDTH:0] op_code,
+      	input logic [OPCODE_WIDTH - 1:0] opcode_in,
 		input logic clock_in, status_Z_in, status_N_in, reset_in,
 		output logic branch_out, sel_B_out, alu_op_out, data_memory_wr_out,  
 		output logic acc_wr_out, pc_wr_out, status_wr_out, ir_wr_out,
@@ -16,8 +17,8 @@ module decoder#(
 	localparam 
 		_FETCH = 2'b00, 
 		//_DEC = 2'b01, 
-		_EXEC = 2'b10,
-		_RESET = 2'b11;
+		_EXEC = 2'b01,
+		_RESET = 2'b10;
 		
 	localparam 
 		_HLT = 5'b00000,
@@ -54,7 +55,7 @@ module decoder#(
 	
 	always @(current_stage)
 	begin
-		case(current_stage)			
+		case(current_stage)		
 			_RESET:
 			begin
 				next_stage = _FETCH;
@@ -130,7 +131,7 @@ module decoder#(
 				pc_reset_out = 1'b0;
 				status_reset_out = 1'b0;
 				ir_reset_out = 1'b0;
-				case(op_code)
+				case(opcode_in)
 					_HLT:
 					begin
 						branch_out = 1'b0;
@@ -311,7 +312,7 @@ module decoder#(
 				pc_reset_out = 1'b0;
 				status_reset_out = 1'b0;
 				ir_reset_out = 1'b0;
-				case(op_code)
+				case(opcode_in)
 					_HLT:
 					begin
 						branch_out = 1'b0;

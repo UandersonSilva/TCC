@@ -13,9 +13,9 @@ module pc_adder_test#(
     initial 
     begin
         pc_adder_in = 11'b00000000000;
-        #2 pc_adder_in = pc_adder_out;
-        #2 pc_adder_in = pc_adder_out;
-        #2 pc_adder_in = pc_adder_out;
-        #2 pc_adder_in = pc_adder_out;    
+        #1 pc_adder_in = pc_adder_out;
+        #1 pc_adder_in = pc_adder_out;
+        #1 pc_adder_in = pc_adder_out;
+        #1 pc_adder_in = pc_adder_out;    
     end
 endmodule

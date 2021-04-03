@@ -5,7 +5,7 @@ module control_test#(
     parameter INSTRUCTION_WIDTH = 16
 );
 
-	logic [INSTRUCTION_WIDTH - 1:0] instruction, ext;
+	logic [INSTRUCTION_WIDTH - 1:0] instruction;
     logic clock, status_Z, status_N, reset;
     logic [OPERAND_WIDTH - 1:0] address, operand;
     logic sel_B, alu_op, data_memory_wr;  
@@ -17,7 +17,7 @@ module control_test#(
 	
 	control control0(
 		.instruction_in(instruction), 
-        .ext_in(ext),
+        //.ext_in(ext),
         .clock_in(clock), 
         .status_Z_in(status_Z), 
         .status_N_in(status_N), 
@@ -37,34 +37,33 @@ module control_test#(
 	initial
 	begin
 		status_Z=1'b0; status_N=1'b0; reset = 1;
-		ext = 16'b0000001010101100;
-	
-		#2 instruction = 16'b0000100000000000;//STO
-		#4 instruction = 16'b0001000000000000;//LD
-		#4 instruction = 16'b0001100000000001;//LDI
-		#4 instruction = 16'b0010000000000010;//ADD
-		#4 instruction = 16'b0010100000000101;//ADDI
-		#4 instruction = 16'b0011000000000011;//SUB
+		//ext = 16'b0000001010101100;
+		instruction = 16'b0000100000001101;//STO
+		//#4 instruction = 16'b0001000000000000;//LD
+		//#4 instruction = 16'b0001100000000001;//LDI
+		#6 instruction = 16'b0010000000000010;//ADD
+		//#4 instruction = 16'b0010100000000101;//ADDI
+		//#4 instruction = 16'b0011000000000011;//SUB
 		#4 instruction = 16'b0011100000011000;//SUBI
-		#4 instruction = 16'b0100000000000011;//BEQ
+		#4 instruction = 16'b0100000000110011;//BEQ
 			status_Z=1'b1;
 		#4 status_Z=1'b0;
-		#4 instruction = 16'b0100100000000000;//BNE
+		/*#4 instruction = 16'b0100100000000000;//BNE
 			status_Z=1'b1;
 		#4 status_Z=1'b0; 
 		#4 instruction = 16'b0101000000000000;//BGT
 		#4 status_Z=1'b1;
 		#4 status_N=1'b1;
 		#4 status_Z=1'b0;
-		#4 status_N=1'b0;
-		#4 instruction = 16'b0101100000000000;//BGE
+		#4 status_N=1'b0;*/
+		#4 instruction = 16'b0101100000001000;//BGE
 		#4 status_N=1'b1;
-		#4 instruction = 16'b0110000000000000;//BLT
-		#4 status_N=1'b0;
-		#4 instruction = 16'b0110100000000000;//BLE
-		#4 status_Z=1'b1;
-		#4 status_N=1'b1;
-		#4 instruction = 16'b0111000000000000;//JMP
-		#4	reset = 1'b0;	
+		//#4 instruction = 16'b0110000000000000;//BLT
+		//#4 status_N=1'b0;
+		//#4 instruction = 16'b0110100000000000;//BLE
+		//#4 status_Z=1'b1;
+		//#4 status_N=1'b1;
+		//#4 instruction = 16'b0111000000000000;//JMP
+		#4 reset = 1'b0;	
 	end	
 endmodule 

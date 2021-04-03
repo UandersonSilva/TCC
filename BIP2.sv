@@ -11,14 +11,14 @@ module BIP2#(
     );
 
     logic [OPERAND_ADDRESS_WIDTH - 1:0] operand;
-    logic [INSTRUCTION_DATA_WIDTH - 1:0] ext;
+    //logic [INSTRUCTION_DATA_WIDTH - 1:0] ext;
     logic status_Z, status_N, status_reset, status_wr;
     logic [1:0] sel_A;
     logic sel_B, alu_op, acc_wr, acc_reset;
 
     control control0(
         .instruction_in(instruction_in), 
-        .ext_in(ext),
+        //.ext_in(ext),
         .clock_in(clock_in), 
         .status_Z_in(status_Z), 
         .status_N_in(status_N), 
@@ -37,7 +37,7 @@ module BIP2#(
 
     datapath datapath0(
         .operand_in(operand), 
-        .data_memory_in(data_in),
+        .data_in(data_in),
         .alu_op_in(alu_op),
         .sel_A_in(sel_A), 
         .sel_B_in(sel_B),
@@ -47,8 +47,8 @@ module BIP2#(
         .status_wr_in(status_wr), 
         .status_reset_in(status_reset), 
         .data_out(data_out), 
-        .ext_out(ext),
-        .data_memory_address_out(data_address_out),
+        //.ext_out(ext),
+        .data_address_out(data_address_out),
         .status_Z_out(status_Z), 
         .status_N_out(status_N)
     );
