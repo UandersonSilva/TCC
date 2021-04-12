@@ -7,7 +7,7 @@ module BIP2#(
         input logic [INSTRUCTION_DATA_WIDTH - 1:0] instruction_in, data_in,
         output logic [OPERAND_ADDRESS_WIDTH - 1:0] instruction_address_out, data_address_out,
         output logic [INSTRUCTION_DATA_WIDTH - 1:0] data_out,
-        output logic data_wr_out
+        output logic data_memory_wr_out
     );
 
     logic [OPERAND_ADDRESS_WIDTH - 1:0] operand;
@@ -27,7 +27,7 @@ module BIP2#(
         .operand_out(operand),
         .sel_B_out(sel_B), 
         .alu_op_out(alu_op), 
-        .data_memory_wr_out(data_wr_out),  
+        .data_memory_wr_out(data_memory_wr_out),  
         .acc_wr_out(acc_wr),  
         .status_wr_out(status_wr), 
         .acc_reset_out(acc_reset),  
