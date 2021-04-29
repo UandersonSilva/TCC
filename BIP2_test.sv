@@ -19,11 +19,27 @@ BIP2 bip2(
         .instruction_address_out(instruction_address), 
         .data_address_out(data_address),
         .data_out(bip2_data_out), 
-        .data_wr_out(data_wr)
+        .data_memory_wr_out(data_wr)
     );
+
+	instruction_memory instruction_memory0(
+		.address_in(instruction_address),
+		.instruction_out(instruction)
+	);
+
+	data_memory data_memory0(
+		.data_in(bip2_data_out),
+        .address_in(data_address),
+        .data_memory_wr_in(data_wr),
+        .clock_in(clock),
+        .data_out(data)
+	);
 
 initial
 	begin
+		reset = 1'b1;
+	end 
+	/*
 		instruction = 16'b00000_00000101010; data = 16'b00000_00000000001;
 		reset = 1'b1;
 		#6 instruction=16'b00001_00000000001; //STO
@@ -46,5 +62,5 @@ initial
 		#2 reset = 1'b1;
 		#4 instruction=16'b01001_00000001001; //BNE
         #4 instruction=16'b00000_00000000000; //HLT
-	end
+	end*/
 endmodule

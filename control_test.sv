@@ -64,6 +64,6 @@ module control_test#(
 		//#4 status_Z=1'b1;
 		//#4 status_N=1'b1;
 		//#4 instruction = 16'b0111000000000000;//JMP
-		#4 reset = 1'b0;	
+		#6 reset = 1'b0;	
 	end	
 endmodule 
