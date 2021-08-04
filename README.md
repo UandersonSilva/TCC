@@ -1,2 +1,3 @@
 # BIP2_SystemVerilog
-Descrição da arquitetura BIP 2 em SystemVerilog.
+Descrição do processador BIP 2 em SystemVerilog.                
+SystemVerilog description of the BIP 2 processor.
