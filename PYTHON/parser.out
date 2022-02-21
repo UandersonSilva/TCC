@@ -1,0 +1,342 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement_list
+Rule 1     statement_list -> statement
+Rule 2     statement_list -> statement_list statement
+Rule 3     statement_list -> statement_list EOF
+Rule 4     statement -> command VALUE
+Rule 5     command -> HLT
+Rule 6     command -> STO
+Rule 7     command -> LD
+Rule 8     command -> LDI
+Rule 9     command -> ADD
+Rule 10    command -> ADDI
+Rule 11    command -> SUB
+Rule 12    command -> SUBI
+Rule 13    command -> BEQ
+Rule 14    command -> BNE
+Rule 15    command -> BGT
+Rule 16    command -> BGE
+Rule 17    command -> BLT
+Rule 18    command -> BLE
+Rule 19    command -> JMP
+
+Terminals, with rules where they appear
+
+ADD                  : 9
+ADDI                 : 10
+BEQ                  : 13
+BGE                  : 16
+BGT                  : 15
+BLE                  : 18
+BLT                  : 17
+BNE                  : 14
+EOF                  : 3
+HLT                  : 5
+JMP                  : 19
+LD                   : 7
+LDI                  : 8
+STO                  : 6
+SUB                  : 11
+SUBI                 : 12
+VALUE                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+command              : 4
+statement            : 1 2
+statement_list       : 2 3 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement_list
+    (1) statement_list -> . statement
+    (2) statement_list -> . statement_list statement
+    (3) statement_list -> . statement_list EOF
+    (4) statement -> . command VALUE
+    (5) command -> . HLT
+    (6) command -> . STO
+    (7) command -> . LD
+    (8) command -> . LDI
+    (9) command -> . ADD
+    (10) command -> . ADDI
+    (11) command -> . SUB
+    (12) command -> . SUBI
+    (13) command -> . BEQ
+    (14) command -> . BNE
+    (15) command -> . BGT
+    (16) command -> . BGE
+    (17) command -> . BLT
+    (18) command -> . BLE
+    (19) command -> . JMP
+
+    HLT             shift and go to state 4
+    STO             shift and go to state 5
+    LD              shift and go to state 6
+    LDI             shift and go to state 7
+    ADD             shift and go to state 8
+    ADDI            shift and go to state 9
+    SUB             shift and go to state 10
+    SUBI            shift and go to state 11
+    BEQ             shift and go to state 12
+    BNE             shift and go to state 13
+    BGT             shift and go to state 14
+    BGE             shift and go to state 15
+    BLT             shift and go to state 16
+    BLE             shift and go to state 17
+    JMP             shift and go to state 18
+
+    statement_list                 shift and go to state 1
+    statement                      shift and go to state 2
+    command                        shift and go to state 3
+
+state 1
+
+    (0) S' -> statement_list .
+    (2) statement_list -> statement_list . statement
+    (3) statement_list -> statement_list . EOF
+    (4) statement -> . command VALUE
+    (5) command -> . HLT
+    (6) command -> . STO
+    (7) command -> . LD
+    (8) command -> . LDI
+    (9) command -> . ADD
+    (10) command -> . ADDI
+    (11) command -> . SUB
+    (12) command -> . SUBI
+    (13) command -> . BEQ
+    (14) command -> . BNE
+    (15) command -> . BGT
+    (16) command -> . BGE
+    (17) command -> . BLT
+    (18) command -> . BLE
+    (19) command -> . JMP
+
+    EOF             shift and go to state 20
+    HLT             shift and go to state 4
+    STO             shift and go to state 5
+    LD              shift and go to state 6
+    LDI             shift and go to state 7
+    ADD             shift and go to state 8
+    ADDI            shift and go to state 9
+    SUB             shift and go to state 10
+    SUBI            shift and go to state 11
+    BEQ             shift and go to state 12
+    BNE             shift and go to state 13
+    BGT             shift and go to state 14
+    BGE             shift and go to state 15
+    BLT             shift and go to state 16
+    BLE             shift and go to state 17
+    JMP             shift and go to state 18
+
+    statement                      shift and go to state 19
+    command                        shift and go to state 3
+
+state 2
+
+    (1) statement_list -> statement .
+
+    EOF             reduce using rule 1 (statement_list -> statement .)
+    HLT             reduce using rule 1 (statement_list -> statement .)
+    STO             reduce using rule 1 (statement_list -> statement .)
+    LD              reduce using rule 1 (statement_list -> statement .)
+    LDI             reduce using rule 1 (statement_list -> statement .)
+    ADD             reduce using rule 1 (statement_list -> statement .)
+    ADDI            reduce using rule 1 (statement_list -> statement .)
+    SUB             reduce using rule 1 (statement_list -> statement .)
+    SUBI            reduce using rule 1 (statement_list -> statement .)
+    BEQ             reduce using rule 1 (statement_list -> statement .)
+    BNE             reduce using rule 1 (statement_list -> statement .)
+    BGT             reduce using rule 1 (statement_list -> statement .)
+    BGE             reduce using rule 1 (statement_list -> statement .)
+    BLT             reduce using rule 1 (statement_list -> statement .)
+    BLE             reduce using rule 1 (statement_list -> statement .)
+    JMP             reduce using rule 1 (statement_list -> statement .)
+    $end            reduce using rule 1 (statement_list -> statement .)
+
+
+state 3
+
+    (4) statement -> command . VALUE
+
+    VALUE           shift and go to state 21
+
+
+state 4
+
+    (5) command -> HLT .
+
+    VALUE           reduce using rule 5 (command -> HLT .)
+
+
+state 5
+
+    (6) command -> STO .
+
+    VALUE           reduce using rule 6 (command -> STO .)
+
+
+state 6
+
+    (7) command -> LD .
+
+    VALUE           reduce using rule 7 (command -> LD .)
+
+
+state 7
+
+    (8) command -> LDI .
+
+    VALUE           reduce using rule 8 (command -> LDI .)
+
+
+state 8
+
+    (9) command -> ADD .
+
+    VALUE           reduce using rule 9 (command -> ADD .)
+
+
+state 9
+
+    (10) command -> ADDI .
+
+    VALUE           reduce using rule 10 (command -> ADDI .)
+
+
+state 10
+
+    (11) command -> SUB .
+
+    VALUE           reduce using rule 11 (command -> SUB .)
+
+
+state 11
+
+    (12) command -> SUBI .
+
+    VALUE           reduce using rule 12 (command -> SUBI .)
+
+
+state 12
+
+    (13) command -> BEQ .
+
+    VALUE           reduce using rule 13 (command -> BEQ .)
+
+
+state 13
+
+    (14) command -> BNE .
+
+    VALUE           reduce using rule 14 (command -> BNE .)
+
+
+state 14
+
+    (15) command -> BGT .
+
+    VALUE           reduce using rule 15 (command -> BGT .)
+
+
+state 15
+
+    (16) command -> BGE .
+
+    VALUE           reduce using rule 16 (command -> BGE .)
+
+
+state 16
+
+    (17) command -> BLT .
+
+    VALUE           reduce using rule 17 (command -> BLT .)
+
+
+state 17
+
+    (18) command -> BLE .
+
+    VALUE           reduce using rule 18 (command -> BLE .)
+
+
+state 18
+
+    (19) command -> JMP .
+
+    VALUE           reduce using rule 19 (command -> JMP .)
+
+
+state 19
+
+    (2) statement_list -> statement_list statement .
+
+    EOF             reduce using rule 2 (statement_list -> statement_list statement .)
+    HLT             reduce using rule 2 (statement_list -> statement_list statement .)
+    STO             reduce using rule 2 (statement_list -> statement_list statement .)
+    LD              reduce using rule 2 (statement_list -> statement_list statement .)
+    LDI             reduce using rule 2 (statement_list -> statement_list statement .)
+    ADD             reduce using rule 2 (statement_list -> statement_list statement .)
+    ADDI            reduce using rule 2 (statement_list -> statement_list statement .)
+    SUB             reduce using rule 2 (statement_list -> statement_list statement .)
+    SUBI            reduce using rule 2 (statement_list -> statement_list statement .)
+    BEQ             reduce using rule 2 (statement_list -> statement_list statement .)
+    BNE             reduce using rule 2 (statement_list -> statement_list statement .)
+    BGT             reduce using rule 2 (statement_list -> statement_list statement .)
+    BGE             reduce using rule 2 (statement_list -> statement_list statement .)
+    BLT             reduce using rule 2 (statement_list -> statement_list statement .)
+    BLE             reduce using rule 2 (statement_list -> statement_list statement .)
+    JMP             reduce using rule 2 (statement_list -> statement_list statement .)
+    $end            reduce using rule 2 (statement_list -> statement_list statement .)
+
+
+state 20
+
+    (3) statement_list -> statement_list EOF .
+
+    EOF             reduce using rule 3 (statement_list -> statement_list EOF .)
+    HLT             reduce using rule 3 (statement_list -> statement_list EOF .)
+    STO             reduce using rule 3 (statement_list -> statement_list EOF .)
+    LD              reduce using rule 3 (statement_list -> statement_list EOF .)
+    LDI             reduce using rule 3 (statement_list -> statement_list EOF .)
+    ADD             reduce using rule 3 (statement_list -> statement_list EOF .)
+    ADDI            reduce using rule 3 (statement_list -> statement_list EOF .)
+    SUB             reduce using rule 3 (statement_list -> statement_list EOF .)
+    SUBI            reduce using rule 3 (statement_list -> statement_list EOF .)
+    BEQ             reduce using rule 3 (statement_list -> statement_list EOF .)
+    BNE             reduce using rule 3 (statement_list -> statement_list EOF .)
+    BGT             reduce using rule 3 (statement_list -> statement_list EOF .)
+    BGE             reduce using rule 3 (statement_list -> statement_list EOF .)
+    BLT             reduce using rule 3 (statement_list -> statement_list EOF .)
+    BLE             reduce using rule 3 (statement_list -> statement_list EOF .)
+    JMP             reduce using rule 3 (statement_list -> statement_list EOF .)
+    $end            reduce using rule 3 (statement_list -> statement_list EOF .)
+
+
+state 21
+
+    (4) statement -> command VALUE .
+
+    EOF             reduce using rule 4 (statement -> command VALUE .)
+    HLT             reduce using rule 4 (statement -> command VALUE .)
+    STO             reduce using rule 4 (statement -> command VALUE .)
+    LD              reduce using rule 4 (statement -> command VALUE .)
+    LDI             reduce using rule 4 (statement -> command VALUE .)
+    ADD             reduce using rule 4 (statement -> command VALUE .)
+    ADDI            reduce using rule 4 (statement -> command VALUE .)
+    SUB             reduce using rule 4 (statement -> command VALUE .)
+    SUBI            reduce using rule 4 (statement -> command VALUE .)
+    BEQ             reduce using rule 4 (statement -> command VALUE .)
+    BNE             reduce using rule 4 (statement -> command VALUE .)
+    BGT             reduce using rule 4 (statement -> command VALUE .)
+    BGE             reduce using rule 4 (statement -> command VALUE .)
+    BLT             reduce using rule 4 (statement -> command VALUE .)
+    BLE             reduce using rule 4 (statement -> command VALUE .)
+    JMP             reduce using rule 4 (statement -> command VALUE .)
+    $end            reduce using rule 4 (statement -> command VALUE .)
+

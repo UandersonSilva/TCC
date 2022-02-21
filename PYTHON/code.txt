@@ -1,0 +1,6 @@
+LDI 7
+STO 2
+LDI 5
+ADD 2
+STO 3
+HLT 0
